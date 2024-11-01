@@ -3,9 +3,31 @@ import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg_flutter.dart';
 
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../onBoarding/presentation/views/on_boarding_view.dart';
 
-class SplashViewBody extends StatelessWidget {
+class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
+
+  @override
+  State<SplashViewBody> createState() => _SplashViewBodyState();
+}
+
+class _SplashViewBodyState extends State<SplashViewBody>
+    with SingleTickerProviderStateMixin {
+  late AnimationController animationController;
+  late Animation<Offset> animation;
+  @override
+  void initState() {
+    super.initState();
+    translateAnimation();
+    excuteSplash();
+  }
+
+  @override
+  dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +37,16 @@ class SplashViewBody extends StatelessWidget {
         children: [
           AspectRatio(
             aspectRatio: 220 / 120,
-            child: SvgPicture.asset(
-              Assets.assetsImagesSplashImage,
-            ),
+            child: AnimatedBuilder(
+                animation: animation,
+                builder: (context, child) {
+                  return Transform.translate(
+                    offset: animation.value,
+                    child: SvgPicture.asset(
+                      Assets.assetsImagesSplashImage,
+                    ),
+                  );
+                }),
           ),
           const SizedBox(
             height: 20,
@@ -29,5 +58,27 @@ class SplashViewBody extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void excuteSplash() async {
+    await Future.delayed(const Duration(seconds: 4), () {
+      Navigator.of(mounted ? context : context)
+          .pushReplacementNamed(OnBoardingView.routeName);
+    });
+  }
+
+  void translateAnimation() {
+    animationController = AnimationController(
+        vsync: this,
+        duration: const Duration(seconds: 4),
+        animationBehavior: AnimationBehavior.normal);
+    animationController.forward();
+    animation = Tween<Offset>(
+      begin: const Offset(-120, 0),
+      end: Offset.zero,
+    ).animate(animationController);
+    animation.addListener(() {
+      animationController.forward();
+    });
   }
 }
