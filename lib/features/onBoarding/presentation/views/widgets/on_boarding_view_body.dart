@@ -1,4 +1,5 @@
 import 'package:delivery_food/core/utils/app_assets.dart';
+import 'package:delivery_food/features/onBoarding/presentation/views/widgets/on_boarding_naviagtion.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingViewBody extends StatelessWidget {
@@ -6,19 +7,26 @@ class OnBoardingViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(
-          height: 800,
-          width: double.infinity,
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Colors.yellow,
-              image: DecorationImage(
-                image: AssetImage(Assets.assetsImagesImageOnboardingBackground),
-                fit: BoxFit.fill,
-              ),
-            ),
-          )),
+    return Stack(
+      clipBehavior: Clip.none,
+      fit: StackFit.expand,
+      children: [
+        Positioned.fill(
+          left: -15,
+          child: Image.asset(
+            Assets.assetsImagesImageOnboardingBackground,
+            width: double.infinity,
+            height: double.infinity,
+            fit: BoxFit.fill,
+          ),
+        ),
+        Positioned(
+          top: MediaQuery.sizeOf(context).height * 0.4,
+          left: 30,
+          right: 30,
+          child: const OnBoardingNavigation(),
+        ),
+      ],
     );
   }
 }
