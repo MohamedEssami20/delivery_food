@@ -1,8 +1,9 @@
 import 'package:delivery_food/core/utils/app_color.dart';
-import 'package:delivery_food/core/utils/app_text_styles.dart';
+import 'package:delivery_food/features/onBoarding/presentation/views/widgets/on_boarding_bottons.dart';
 import 'package:delivery_food/features/onBoarding/presentation/views/widgets/on_boarding_page_view.dart';
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../core/utils/widgets/custom_dots_indicator.dart';
 
 class OnBoardingNavigation extends StatefulWidget {
   const OnBoardingNavigation({
@@ -50,28 +51,7 @@ class _OnBoardingNavigationState extends State<OnBoardingNavigation> {
             child: OnBoardingPageView(pageController: _pageController),
           ),
           const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              DotsIndicator(
-                position: currentPage.round(),
-                dotsCount: 3,
-                axis: Axis.horizontal,
-                decorator: DotsDecorator(
-                  activeColor: Colors.white,
-                  color: const Color(0xFFC2C2C2),
-                  size: const Size(32, 6),
-                  activeSize: const Size(32, 6),
-                  activeShape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.59),
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.59),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          CustomButtonDotsIndicator(currentPage: currentPage),
           const SizedBox(height: 80),
           OnBoardingButtons(
             pageController: _pageController,
@@ -81,57 +61,6 @@ class _OnBoardingNavigationState extends State<OnBoardingNavigation> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class OnBoardingButtons extends StatelessWidget {
-  const OnBoardingButtons({
-    super.key,
-    required this.pageController,
-  });
-  final PageController pageController;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Text(
-            'Skip',
-            style: AppTextStyles.semiBold14.copyWith(color: Colors.white),
-          ),
-        ),
-        const Spacer(),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: GestureDetector(
-            onTap: () {
-              if(pageController.page == 2) {
-               // Navigator.pushReplacementNamed(context, '/login');
-              }
-              else{
-                pageController.nextPage(
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.easeInOut,
-              );
-              }
-            },
-            child: Row(
-              children: [
-                Text(
-                  'Next',
-                  style: AppTextStyles.semiBold14.copyWith(color: Colors.white),
-                ),
-                const Icon(Icons.arrow_forward_ios,
-                    color: Colors.white, size: 16),
-              ],
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
