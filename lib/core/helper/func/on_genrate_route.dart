@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:delivery_food/features/splash/presentation/views/splash_view.dart';
 
 import '../../../features/auth/presentation/views/sigin_in_view.dart';
+import '../../../features/auth/presentation/views/sign_up_view.dart';
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -12,6 +13,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const OnBoardingView());
     case SiginInView.routeName:
       return MaterialPageRoute(builder: (context) => const SiginInView());
+    case SignUpView.routeName:
+      return MaterialPageRoute(builder: (context) => const SignUpView());
     // Add more routes here as needed
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
