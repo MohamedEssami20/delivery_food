@@ -1,8 +1,9 @@
 import 'package:delivery_food/core/utils/app_text_styles.dart';
 import 'package:delivery_food/core/utils/widgets/custom_button.dart';
 import 'package:delivery_food/core/utils/widgets/custom_text_field.dart';
+import 'package:delivery_food/features/auth/presentation/views/widgets/custom_divider.dart';
+import 'package:delivery_food/features/auth/presentation/views/widgets/social_login_item_list_view.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../onBoarding/presentation/views/widgets/forget_password.dart';
 
 class SiginInViewBody extends StatefulWidget {
@@ -86,42 +87,15 @@ class _SiginInViewBodyState extends State<SiginInViewBody> {
           ),
           CustomButton(title: "Sigin In", onPressed: () {}),
           const SizedBox(
-            height: 16,
+            height: 20,
           ),
           const CustomDivider(),
+          const SizedBox(
+            height: 25,
+          ),
+          const SocialLoginItemListView(),
         ],
       ),
-    );
-  }
-}
-
-class CustomDivider extends StatelessWidget {
-  const CustomDivider({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            height: 1,
-            color: const Color(0xFFC2C2C2),
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Text(
-            'Or Sign in with',
-            style: TextStyle(color: Color(0xFFC2C2C2)),
-          ),
-        ),
-        Expanded(
-          child: Container(
-            height: 1,
-            color: const Color(0xFFC2C2C2),
-          ),
-        ),
-      ],
     );
   }
 }
