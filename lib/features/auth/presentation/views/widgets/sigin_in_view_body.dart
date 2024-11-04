@@ -1,6 +1,7 @@
 import 'package:delivery_food/core/utils/app_text_styles.dart';
 import 'package:delivery_food/core/utils/widgets/custom_button.dart';
 import 'package:delivery_food/core/utils/widgets/custom_text_field.dart';
+import 'package:delivery_food/features/auth/presentation/views/sign_up_view.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/custom_divider.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/dont_have_account.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/login_or_rigster_header.dart';
@@ -90,9 +91,12 @@ class _SiginInViewBodyState extends State<SiginInViewBody> {
             const SizedBox(
               height: 30,
             ),
-            const DontHaveAccount(
+            DontHaveAccount(
               title: " Do not have an account?",
               subTitle: "Register",
+              onTap: () {
+                Navigator.pushNamed(context, SignUpView.routeName);
+              },
             ),
           ],
         ),

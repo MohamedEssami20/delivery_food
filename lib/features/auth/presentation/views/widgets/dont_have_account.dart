@@ -1,4 +1,4 @@
-import 'package:delivery_food/features/auth/presentation/views/sign_up_view.dart';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -6,9 +6,10 @@ import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 
 class DontHaveAccount extends StatelessWidget {
-  const DontHaveAccount({super.key, required this.title, required this.subTitle});
+  const DontHaveAccount({super.key, required this.title, required this.subTitle, this.onTap});
   final String title;
   final String subTitle;
+  final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -28,9 +29,8 @@ class DontHaveAccount extends StatelessWidget {
               ),
               TextSpan(
                 recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    Navigator.pushNamed(context, SignUpView.routeName);
-                  },
+                  ..onTap = onTap,
+
                 text: subTitle,
                 style: AppTextStyles.semiBold14
                     .copyWith(color: AppColor.primaryColor),

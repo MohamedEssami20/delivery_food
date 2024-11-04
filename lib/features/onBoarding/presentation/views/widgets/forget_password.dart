@@ -1,3 +1,4 @@
+import 'package:delivery_food/features/auth/presentation/views/forget_password_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_color.dart';
@@ -11,10 +12,16 @@ class ForgetPassword extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Text(
-          'Forget Password ?',
-          textAlign: TextAlign.center,
-          style: AppTextStyles.medium14.copyWith(color: AppColor.primaryColor),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, ForgetPasswordView.routeName);
+          },
+          child: Text(
+            'Forget Password ?',
+            textAlign: TextAlign.center,
+            style:
+                AppTextStyles.medium14.copyWith(color: AppColor.primaryColor),
+          ),
         ),
       ],
     );

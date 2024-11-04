@@ -6,6 +6,7 @@ import 'package:delivery_food/features/auth/presentation/views/widgets/login_or_
 import 'package:delivery_food/features/auth/presentation/views/widgets/sigin_up_form.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/terms_and_condition.dart';
 import 'package:flutter/material.dart';
+
 class SignUpViewBody extends StatefulWidget {
   const SignUpViewBody({super.key});
   @override
@@ -46,11 +47,14 @@ class _SiginUpViewBodyState extends State<SignUpViewBody> {
             const SizedBox(
               height: 12,
             ),
-            SiginUpForm(isVisible: isvisible, onTap: () {
-              setState(() {
-                isvisible = !isvisible;
-              });
-            },),
+            SiginUpForm(
+              isVisible: isvisible,
+              onTap: () {
+                setState(() {
+                  isvisible = !isvisible;
+                });
+              },
+            ),
             const SizedBox(
               height: 16,
             ),
@@ -69,9 +73,12 @@ class _SiginUpViewBodyState extends State<SignUpViewBody> {
             const SizedBox(
               height: 16,
             ),
-            const DontHaveAccount(
+            DontHaveAccount(
               title: " Do have an account? ",
               subTitle: "Sign in",
+              onTap: () {
+                Navigator.pop(context);
+              },
             ),
           ],
         ),
@@ -79,4 +86,3 @@ class _SiginUpViewBodyState extends State<SignUpViewBody> {
     );
   }
 }
-
