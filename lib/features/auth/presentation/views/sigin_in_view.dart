@@ -1,7 +1,5 @@
 import 'package:delivery_food/core/service/get_it_service.dart';
-import 'package:delivery_food/features/auth/presentation/domain/auth_repos/auth_repo.dart';
 import 'package:delivery_food/features/auth/presentation/manager/siginin_cubit/sigin_in_cubit.dart';
-import 'package:delivery_food/features/auth/presentation/views/widgets/sigin_in_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

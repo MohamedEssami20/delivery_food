@@ -4,11 +4,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'core/helper/func/on_genrate_route.dart';
+import 'core/service/get_it_service.dart';
 import 'firebase_options.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   // registerSharedPref(); 
+   GetItService.setup();
    await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
