@@ -1,3 +1,4 @@
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import '../../domain/auth_repos/auth_repo.dart';
@@ -9,7 +10,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit(this._authRepo) : super(SignUpInitial());
   final AuthRepo _authRepo;
 
-  // create method that sign up user with email and password
+  // create method that sign in user with email and password
   Future<void> createUserWithEmailAndPassword({
     required String email,
     required String password,
@@ -28,6 +29,8 @@ class SignUpCubit extends Cubit<SignUpState> {
       (user) => emit(
         SignUpSuccess(userEntity: user),
       ),
-    );
-  }
+    );  
 }
+}
+
+
