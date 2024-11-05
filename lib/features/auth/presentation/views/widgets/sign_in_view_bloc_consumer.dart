@@ -5,6 +5,8 @@ import 'package:delivery_food/features/auth/presentation/views/widgets/sigin_in_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/utils/widgets/custom_progerss_indicator.dart';
+
 class SignInViewBlocConsumer extends StatefulWidget {
   const SignInViewBlocConsumer({super.key});
 
@@ -16,14 +18,19 @@ class _SignInViewBlocConsumerState extends State<SignInViewBlocConsumer> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SiginInCubit, SiginInState>(
-      builder: (context, state) => const SiginInViewBody(),
+      builder: (context, state) {
+        return CustomProgressIndicator(
+          inAsyncCall: state is SiginInLoading,
+          child: const SiginInViewBody(),
+        );
+      },
       listener: (context, state) {
         if (state is SiginInSuccess) {
           showSuccessSnackBar(context, successMessage: "Login Success");
         }
-       if(state is SiginInFailure){
+        if (state is SiginInFailure) {
           showErrorSnackBar(context, errorMessage: state.errorMessage);
-      }
+        }
       },
     );
   }
