@@ -1,7 +1,9 @@
+import 'package:delivery_food/core/service/bloc_observer_service.dart';
 import 'package:delivery_food/core/service/register_shared_pref.dart';
 import 'package:delivery_food/features/splash/presentation/views/splash_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/helper/func/on_genrate_route.dart';
 import 'core/service/get_it_service.dart';
@@ -11,6 +13,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   // registerSharedPref(); 
    GetItService.setup();
+   Bloc.observer=BlocObserverService(); 
    await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

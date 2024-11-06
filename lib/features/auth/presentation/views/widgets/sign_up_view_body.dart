@@ -1,11 +1,12 @@
-import 'package:delivery_food/core/utils/app_text_styles.dart';
 import 'package:delivery_food/core/utils/widgets/custom_button.dart';
-import 'package:delivery_food/core/utils/widgets/custom_text_field.dart';
+import 'package:delivery_food/core/utils/widgets/error_snak_bar.dart';
+import 'package:delivery_food/features/auth/presentation/manager/sign_up_cubit/sign_up_cubit.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/dont_have_account.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/login_or_rigster_header.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/sigin_up_form.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/terms_and_condition.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpViewBody extends StatefulWidget {
   const SignUpViewBody({super.key});
@@ -16,6 +17,9 @@ class SignUpViewBody extends StatefulWidget {
 class _SiginUpViewBodyState extends State<SignUpViewBody> {
   bool isvisible = true;
   bool isChecked = false;
+  String? name, email, password;
+  final formKey = GlobalKey<FormState>();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,35 +29,33 @@ class _SiginUpViewBodyState extends State<SignUpViewBody> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const LoginOrRegisterHeader(
-                title: "Create your new account.",
-                subTitle:
-                    "Create an account to start looking for the food you like"),
+              title: "Create your new account.",
+              subTitle:
+                  "Create an account to start looking for the food you like",
+            ),
             const SizedBox(
               height: 22,
             ),
-            Text(
-              'Email Address',
-              style: AppTextStyles.medium14.copyWith(
-                color: const Color(0xFF0F0F0F),
+            Form(
+              key: formKey,
+              autovalidateMode: autovalidateMode,
+              child: SiginUpForm(
+                onUserNameSaved: (value) {
+                  name = value;
+                },
+                onEmailSaved: (value) {
+                  email = value;
+                },
+                onPasswordSaved: (value) {
+                  password = value;
+                },
+                isVisible: isvisible,
+                onTap: () {
+                  setState(() {
+                    isvisible = !isvisible;
+                  });
+                },
               ),
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            const CustomTextField(
-              hintText: "Enter Email",
-              keyboardType: TextInputType.emailAddress,
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            SiginUpForm(
-              isVisible: isvisible,
-              onTap: () {
-                setState(() {
-                  isvisible = !isvisible;
-                });
-              },
             ),
             const SizedBox(
               height: 16,
@@ -69,7 +71,28 @@ class _SiginUpViewBodyState extends State<SignUpViewBody> {
             const SizedBox(
               height: 20,
             ),
-            CustomButton(title: "Register", onPressed: () {}),
+            CustomButton(
+              title: "Register",
+              onPressed: () async {
+                if (isChecked == false) {
+                  showErrorSnackBar(context,
+                      errorMessage: "you should accept terms and conditions");
+                }
+                if (formKey.currentState!.validate() && isChecked == true) {
+                  formKey.currentState!.save();
+                  await context
+                      .read<SignUpCubit>()
+                      .createUserWithEmailAndPassword(
+                        email: email!,
+                        password: password!,
+                        name: name!,
+                      );
+                } else {
+                  autovalidateMode = AutovalidateMode.always;
+                  setState(() {});
+                }
+              },
+            ),
             const SizedBox(
               height: 16,
             ),
