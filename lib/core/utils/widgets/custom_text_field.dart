@@ -9,12 +9,13 @@ class CustomTextField extends StatelessWidget {
       this.suffixIcon,
       required this.keyboardType,
       this.obscureText,
-      this.onSved});
+      this.onSved, this.validator});
   final String hintText;
   final Widget? suffixIcon;
   final TextInputType keyboardType;
   final bool? obscureText;
   final void Function(String?)? onSved;
+  final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -31,7 +32,7 @@ class CustomTextField extends StatelessWidget {
         suffixIcon: suffixIcon,
       ),
       textInputAction: TextInputAction.done,
-      validator: (value) {
+      validator: validator??(value) {
         if (value == null || value.isEmpty) {
           return 'this field is required';
         }

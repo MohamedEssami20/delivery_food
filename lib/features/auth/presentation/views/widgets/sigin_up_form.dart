@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/constant/app_constant.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/widgets/custom_text_field.dart';
 
@@ -8,7 +9,9 @@ class SiginUpForm extends StatelessWidget {
     super.key,
     required this.isVisible,
     this.onTap,
-    this.onUserNameSaved, this.onEmailSaved, this.onPasswordSaved,
+    this.onUserNameSaved,
+    this.onEmailSaved,
+    this.onPasswordSaved,
   });
   final bool isVisible;
   final void Function()? onTap;
@@ -46,7 +49,19 @@ class SiginUpForm extends StatelessWidget {
         const SizedBox(
           height: 12,
         ),
-         CustomTextField(
+        CustomTextField(
+            validator: (value) {
+            final RegExp emailRegex = RegExp(AppConstant.emailRegex);
+            if (value != null || value!.isNotEmpty) {
+              if (!emailRegex.hasMatch(value)) {
+                return 'please enter a valid email address';
+              } else {
+                return null;
+              }
+            } else {
+              return "this field is required";
+            }
+          },
           onSved: onEmailSaved,
           hintText: "Enter Email",
           keyboardType: TextInputType.emailAddress,

@@ -7,7 +7,10 @@ import 'package:delivery_food/features/auth/presentation/views/widgets/dont_have
 import 'package:delivery_food/features/auth/presentation/views/widgets/login_or_rigster_header.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/social_login_item_list_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/constant/app_constant.dart';
 import '../../../../onBoarding/presentation/views/widgets/forget_password.dart';
+import '../../manager/siginin_cubit/sigin_in_cubit.dart';
 
 class SiginInViewBody extends StatefulWidget {
   const SiginInViewBody({super.key});
@@ -17,88 +20,127 @@ class SiginInViewBody extends StatefulWidget {
 }
 
 class _SiginInViewBodyState extends State<SiginInViewBody> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   bool isvisible = true;
+  String? email, password;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18),
       child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const LoginOrRegisterHeader(
-                title: "Login to your account.",
-                subTitle: "Please sign in to your account"),
-            const SizedBox(
-              height: 22,
-            ),
-            Text(
-              'Email Address',
-              style: AppTextStyles.medium14.copyWith(
-                color: const Color(0xFF0F0F0F),
+        child: Form(
+          autovalidateMode: autovalidateMode,
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const LoginOrRegisterHeader(
+                  title: "Login to your account.",
+                  subTitle: "Please sign in to your account"),
+              const SizedBox(
+                height: 22,
               ),
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            const CustomTextField(
-              hintText: "Enter Email",
-              keyboardType: TextInputType.emailAddress,
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            Text(
-              'Password',
-              style: AppTextStyles.medium14.copyWith(
-                color: const Color(0xFF0F0F0F),
+              Text(
+                'Email Address',
+                style: AppTextStyles.medium14.copyWith(
+                  color: const Color(0xFF0F0F0F),
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            CustomTextField(
-              obscureText: isvisible,
-              keyboardType: TextInputType.visiblePassword,
-              hintText: "Enter Password",
-              suffixIcon: IconButton(
-                onPressed: () {
-                  setState(() {
-                    isvisible = !isvisible;
-                  });
+              const SizedBox(
+                height: 12,
+              ),
+              CustomTextField(
+                validator: (value) {
+                  final RegExp emailRegex = RegExp(AppConstant.emailRegex);
+                  if (value != null || value!.isNotEmpty) {
+                    if (!emailRegex.hasMatch(value)) {
+                      return 'please enter a valid email address';
+                    } else {
+                      return null;
+                    }
+                  } else {
+                    return "this field is required";
+                  }
                 },
-                icon: isvisible
-                    ? const Icon(Icons.visibility_off_outlined)
-                    : const Icon(Icons.visibility_outlined),
+                onSved: (value) {
+                  email = value;
+                },
+                hintText: "Enter Email",
+                keyboardType: TextInputType.emailAddress,
               ),
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            const ForgetPassword(),
-            const SizedBox(
-              height: 16,
-            ),
-            CustomButton(title: "Sigin In", onPressed: () {}),
-            const SizedBox(
-              height: 20,
-            ),
-            const CustomDivider(),
-            const SizedBox(
-              height: 25,
-            ),
-            const SocialLoginItemListView(),
-            const SizedBox(
-              height: 30,
-            ),
-            DontHaveAccount(
-              title: " Do not have an account?",
-              subTitle: "Register",
-              onTap: () {
-                Navigator.pushNamed(context, SignUpView.routeName);
-              },
-            ),
-          ],
+              const SizedBox(
+                height: 12,
+              ),
+              Text(
+                'Password',
+                style: AppTextStyles.medium14.copyWith(
+                  color: const Color(0xFF0F0F0F),
+                ),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              CustomTextField(
+                onSved: (value) {
+                  password = value;
+                },
+                obscureText: isvisible,
+                keyboardType: TextInputType.visiblePassword,
+                hintText: "Enter Password",
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      isvisible = !isvisible;
+                    });
+                  },
+                  icon: isvisible
+                      ? const Icon(Icons.visibility_off_outlined)
+                      : const Icon(Icons.visibility_outlined),
+                ),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              const ForgetPassword(),
+              const SizedBox(
+                height: 16,
+              ),
+              CustomButton(
+                title: "Sigin In",
+                onPressed: () async {
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
+                    await context
+                        .read<SiginInCubit>()
+                        .siginInUserWithEmailAndPassword(
+                            email: email!, password: password!);
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const CustomDivider(),
+              const SizedBox(
+                height: 25,
+              ),
+              const SocialLoginItemListView(),
+              const SizedBox(
+                height: 30,
+              ),
+              DontHaveAccount(
+                title: " Do not have an account?",
+                subTitle: "Register",
+                onTap: () {
+                  Navigator.pushNamed(context, SignUpView.routeName);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
