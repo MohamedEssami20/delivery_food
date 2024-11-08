@@ -29,7 +29,7 @@ class SocialLoginItemListView extends StatelessWidget {
           width: 8,
         ),
         Visibility(
-          visible: Platform.isAndroid,
+          visible: Platform.isIOS,
           child: const SocialIcon(
             icon: Assets.assetsImagesAppleIcon,
             size: 24,

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:delivery_food/core/errors/custom_exception.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthService {
 // create method that register user to firebase;
@@ -31,7 +32,6 @@ class FirebaseAuthService {
       log("Exception in Firebase Auth service= ${e.toString()}");
       throw CustomException(
           errorMessage: "there was an error please try again later");
-      
     }
   }
 
@@ -61,5 +61,28 @@ class FirebaseAuthService {
       throw CustomException(
           errorMessage: "there was an error please try again later");
     }
+  }
+
+  //create method that sign in user with google form firebase;
+  Future<User> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    if (googleUser == null) {
+      throw CustomException(
+          errorMessage: "sign in with google was canceld");
+    }
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+    // Once signed in, return the UserCredential
+    return userCredential.user!;
   }
 }

@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../presentation/domain/entites/user_entity.dart';
 
 class UserModel extends UserEntity {
@@ -28,6 +30,15 @@ class UserModel extends UserEntity {
       password: userEntity.password,
       uid: userEntity.uid,
       userName: userEntity.userName,
+    );
+  }
+  
+  factory UserModel.formFirebase(User user) {
+    return UserModel(
+      email: user.email!,
+      password: "",
+      uid: user.uid,
+      userName: user.displayName!,
     );
   }
 

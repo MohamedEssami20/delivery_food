@@ -23,7 +23,7 @@ class AuthRepoImpl extends AuthRepo {
           email: userModel.email, password: userModel.password);
       UserEntity userEntity = UserEntity(
         email: userModel.email,
-        password:   userModel.password,
+        password: userModel.password,
         uid: user.uid,
         userName: userModel.userName,
       );
@@ -50,18 +50,37 @@ class AuthRepoImpl extends AuthRepo {
       );
       log("user now $user");
       UserEntity userEntity = UserEntity(
-          email: userModel.email, 
+          email: userModel.email,
           password: userModel.password,
           uid: user.uid,
           userName: userModel.userName);
       return Right(userEntity);
     } on CustomException catch (e) {
-        log("userEntity ${user!.displayName}");
+      log("userEntity ${user!.displayName}");
       return Left(
         ServerFailure(errotMessage: e.errorMessage),
       );
     } catch (e) {
       log('exeption now= $e');
+      return Left(
+        ServerFailure(errotMessage: "there was an error, try later"),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> signInWithGoogle() async {
+    User? user;
+    try {
+      user = await firebaseAuthService.signInWithGoogle();
+      return Right(
+        UserModel.formFirebase(user).toEntity(),
+      );
+    } on CustomException catch (e) {
+      return Left(
+        ServerFailure(errotMessage: e.errorMessage),
+      );
+    } catch (e) {
       return Left(
         ServerFailure(errotMessage: "there was an error, try later"),
       );

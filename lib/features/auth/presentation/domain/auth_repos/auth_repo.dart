@@ -12,4 +12,7 @@ abstract class AuthRepo {
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword({
     required UserModel userModel,
   });
+
+  //create method that sign in with google in firbase;
+  Future<Either<Failure, UserEntity>> signInWithGoogle();
 }

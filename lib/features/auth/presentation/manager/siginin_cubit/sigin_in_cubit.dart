@@ -28,4 +28,7 @@ class SiginInCubit extends Cubit<SiginInState> {
       ),
     );
   }
+
+  //create method that sign in with google in firebas;
+  
 }
