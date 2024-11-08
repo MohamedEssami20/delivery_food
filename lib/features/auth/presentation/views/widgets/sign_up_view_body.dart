@@ -1,5 +1,6 @@
 import 'package:delivery_food/core/utils/widgets/custom_button.dart';
 import 'package:delivery_food/core/utils/widgets/error_snak_bar.dart';
+import 'package:delivery_food/features/auth/data/models/user_model.dart';
 import 'package:delivery_food/features/auth/presentation/manager/sign_up_cubit/sign_up_cubit.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/dont_have_account.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/login_or_rigster_header.dart';
@@ -94,19 +95,24 @@ class _SiginUpViewBodyState extends State<SignUpViewBody> {
   }
 
   Future<void> onClickSignUpButton(BuildContext context) async {
-     if (isChecked == false) {
+    if (isChecked == false) {
       showErrorSnackBar(context,
           errorMessage: "you should accept terms and conditions");
     }
     if (formKey.currentState!.validate() && isChecked == true) {
       formKey.currentState!.save();
-      await context
-          .read<SignUpCubit>()
-          .createUserWithEmailAndPassword(
-            email: email!,
-            password: password!,
-            name: name!,
-          );
+      UserModel userModel = UserModel(
+        email: email!,
+        password: password!,
+        userName: name!,
+      );
+      await context.read<SignUpCubit>().createUserWithEmailAndPassword(
+          userModel: userModel,
+          ).then(
+        (value) {
+          Navigator.pop(mounted?context:context);
+        });
+    
     } else {
       autovalidateMode = AutovalidateMode.always;
       setState(() {});

@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:delivery_food/features/auth/presentation/domain/entites/user_entity.dart';
 import 'package:meta/meta.dart';
+import '../../../data/models/user_model.dart';
 import '../../domain/auth_repos/auth_repo.dart';
 
 part 'sigin_in_state.dart';
@@ -12,13 +13,11 @@ class SiginInCubit extends Cubit<SiginInState> {
   // create method that sigin in user with email and password;
 
   Future<void> siginInUserWithEmailAndPassword({
-    required String email,
-    required String password,
+    required UserModel userModel,
   }) async {
     emit(SiginInLoading());
     final result = await _authRepo.siginInUserWithEmailAndPassword(
-      email: email,
-      password: password,
+      userModel: userModel,
     );
     result.fold(
       (failure) => emit(

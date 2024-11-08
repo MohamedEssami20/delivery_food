@@ -1,16 +1,16 @@
 class UserEntity {
   final String email;
   final String password;
-  final String uid;
+   String? uid;
   final String userName;
 
   UserEntity(
       {required this.email,
       required this.password,
-      required this.uid,
-      required this.userName});
+      required this.userName, this.uid});
 
-  factory UserEntity.fromMap(Map<String, dynamic> data) {
+  
+    factory UserEntity.fromMap(Map<String, dynamic> data) {
     return UserEntity(
       email: data['email'],
       password: data['password'],

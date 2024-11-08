@@ -6,10 +6,12 @@ import 'package:delivery_food/features/auth/presentation/views/widgets/custom_di
 import 'package:delivery_food/features/auth/presentation/views/widgets/dont_have_account.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/login_or_rigster_header.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/social_login_item_list_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/constant/app_constant.dart';
 import '../../../../onBoarding/presentation/views/widgets/forget_password.dart';
+import '../../../data/models/user_model.dart';
 import '../../manager/siginin_cubit/sigin_in_cubit.dart';
 
 class SiginInViewBody extends StatefulWidget {
@@ -20,6 +22,13 @@ class SiginInViewBody extends StatefulWidget {
 }
 
 class _SiginInViewBodyState extends State<SiginInViewBody> {
+  @override
+  void initState() {
+    email = password = null;
+    setState(() {});
+    super.initState();
+  }
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   bool isvisible = true;
@@ -109,16 +118,7 @@ class _SiginInViewBodyState extends State<SiginInViewBody> {
               CustomButton(
                 title: "Sigin In",
                 onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    _formKey.currentState!.save();
-                    await context
-                        .read<SiginInCubit>()
-                        .siginInUserWithEmailAndPassword(
-                            email: email!, password: password!);
-                  } else {
-                    autovalidateMode = AutovalidateMode.always;
-                    setState(() {});
-                  }
+                  await onClickSigninButton(context);
                 },
               ),
               const SizedBox(
@@ -144,5 +144,23 @@ class _SiginInViewBodyState extends State<SiginInViewBody> {
         ),
       ),
     );
+  }
+
+  Future<void> onClickSigninButton(BuildContext context) async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      UserModel userModel = UserModel(
+        email: email!,
+        password: password!,
+        userName: "mohamed",
+      );
+
+      await context
+          .read<SiginInCubit>()
+          .siginInUserWithEmailAndPassword(userModel: userModel);
+    } else {
+      autovalidateMode = AutovalidateMode.always;
+      setState(() {});
+    }
   }
 }

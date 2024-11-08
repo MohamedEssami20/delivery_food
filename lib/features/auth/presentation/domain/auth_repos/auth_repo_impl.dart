@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:delivery_food/core/errors/custom_exception.dart';
 import 'package:delivery_food/core/errors/failure.dart';
@@ -6,6 +8,7 @@ import 'package:delivery_food/features/auth/presentation/domain/entites/user_ent
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../../../core/service/firebase_auth_service.dart';
+import '../../../data/models/user_model.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final FirebaseAuthService firebaseAuthService;
@@ -13,18 +16,16 @@ class AuthRepoImpl extends AuthRepo {
   AuthRepoImpl({required this.firebaseAuthService});
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
-      {required String email,
-      required String password,
-      required String name}) async {
+      {required UserModel userModel}) async {
     User? user;
     try {
       user = await firebaseAuthService.createUserWithEmailAndPassword(
-          email: email, password: password);
+          email: userModel.email, password: userModel.password);
       UserEntity userEntity = UserEntity(
-        email: email,
-        password: password,
+        email: userModel.email,
+        password:   userModel.password,
         uid: user.uid,
-        userName: name,
+        userName: userModel.userName,
       );
       return Right(userEntity);
     } on CustomException catch (e) {
@@ -40,24 +41,27 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> siginInUserWithEmailAndPassword(
-      {required String email, required String password}) async {
+      {required UserModel userModel}) async {
     User? user;
     try {
       user = await firebaseAuthService.siginInUserWithEmailAndPassword(
-        email: email,
-        password: password,
+        email: userModel.email,
+        password: userModel.password,
       );
+      log("user now $user");
       UserEntity userEntity = UserEntity(
-          email: email,
-          password: password,
+          email: userModel.email, 
+          password: userModel.password,
           uid: user.uid,
-          userName: user.displayName!);
+          userName: userModel.userName);
       return Right(userEntity);
     } on CustomException catch (e) {
+        log("userEntity ${user!.displayName}");
       return Left(
         ServerFailure(errotMessage: e.errorMessage),
       );
     } catch (e) {
+      log('exeption now= $e');
       return Left(
         ServerFailure(errotMessage: "there was an error, try later"),
       );

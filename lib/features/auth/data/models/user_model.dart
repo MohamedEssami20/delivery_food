@@ -1,7 +1,7 @@
 import '../../presentation/domain/entites/user_entity.dart';
 
 class UserModel extends UserEntity {
-  UserModel({required super.email, required super.password, required super.uid, required super.userName});
+  UserModel({required super.email, required super.password, super.uid, required super.userName});
 
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
