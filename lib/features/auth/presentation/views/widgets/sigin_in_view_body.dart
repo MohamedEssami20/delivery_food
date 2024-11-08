@@ -6,7 +6,6 @@ import 'package:delivery_food/features/auth/presentation/views/widgets/custom_di
 import 'package:delivery_food/features/auth/presentation/views/widgets/dont_have_account.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/login_or_rigster_header.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/social_login_item_list_view.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/constant/app_constant.dart';

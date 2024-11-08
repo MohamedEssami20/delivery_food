@@ -1,13 +1,12 @@
 import 'package:delivery_food/core/utils/widgets/custom_button.dart';
-import 'package:delivery_food/core/utils/widgets/error_snak_bar.dart';
 import 'package:delivery_food/features/auth/data/models/user_model.dart';
-import 'package:delivery_food/features/auth/presentation/manager/sign_up_cubit/sign_up_cubit.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/dont_have_account.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/login_or_rigster_header.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/sigin_up_form.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/terms_and_condition.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/helper/func/on_click_signup_button.dart';
+import '../../../data/models/sign_user_model.dart';
 
 class SignUpViewBody extends StatefulWidget {
   const SignUpViewBody({super.key});
@@ -75,8 +74,27 @@ class _SiginUpViewBodyState extends State<SignUpViewBody> {
             CustomButton(
               title: "Register",
               onPressed: () async {
-                await onClickSignUpButton(context);
+                if (formKey.currentState!.validate()&& isChecked == true) {
+                  formKey.currentState!.save();
+                  await onClickSignUpButton(
+                    signUserModel: SignUserModel(
+                      context: context,
+                      mounted: mounted,
+                      userModel: UserModel(
+                        email: email!,
+                        password: password!,
+                        userName: name!,
+                      ),
+                      isChecked: isChecked,
+                    ),
+                  );
+                }
+                else{
+                  autovalidateMode=AutovalidateMode.always;
+                  setState(() {});
+                }
               },
+           
             ),
             const SizedBox(
               height: 16,
@@ -92,30 +110,5 @@ class _SiginUpViewBodyState extends State<SignUpViewBody> {
         ),
       ),
     );
-  }
-
-  Future<void> onClickSignUpButton(BuildContext context) async {
-    if (isChecked == false) {
-      showErrorSnackBar(context,
-          errorMessage: "you should accept terms and conditions");
-    }
-    if (formKey.currentState!.validate() && isChecked == true) {
-      formKey.currentState!.save();
-      UserModel userModel = UserModel(
-        email: email!,
-        password: password!,
-        userName: name!,
-      );
-      await context.read<SignUpCubit>().createUserWithEmailAndPassword(
-          userModel: userModel,
-          ).then(
-        (value) {
-          Navigator.pop(mounted?context:context);
-        });
-    
-    } else {
-      autovalidateMode = AutovalidateMode.always;
-      setState(() {});
-    }
   }
 }
