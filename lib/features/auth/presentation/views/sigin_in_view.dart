@@ -12,10 +12,12 @@ class SiginInView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => GetItService.getIt<SiginInCubit>(),
-      child: const Scaffold(
+      child: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
-          child: SignInViewBlocConsumer(),
+          minimum:
+              EdgeInsets.only(top: MediaQuery.sizeOf(context).height * 0.05),
+          child: const SignInViewBlocConsumer(),
         ),
       ),
     );

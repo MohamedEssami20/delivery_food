@@ -12,7 +12,7 @@ class OnBoardingViewBody extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         Positioned.fill(
-          left: -15,
+          left: -30,
           child: Image.asset(
             Assets.assetsImagesImageOnboardingBackground,
             width: double.infinity,

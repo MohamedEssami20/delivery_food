@@ -8,53 +8,59 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../../core/service/firebase_auth_service.dart';
 
 class AuthRepoImpl extends AuthRepo {
- final FirebaseAuthService firebaseAuthService;
+  final FirebaseAuthService firebaseAuthService;
 
   AuthRepoImpl({required this.firebaseAuthService});
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
       {required String email,
       required String password,
-      required String name}) async{
-         User? user;
-        try{
-           user = await firebaseAuthService.createUserWithEmailAndPassword(
-            email: email,
-            password: password
-          );
-          UserEntity userEntity = UserEntity(
-            email: email,
-            password: password,
-            uid: user.uid,
-          );
-          return Right(userEntity);
-        }
-        on CustomException catch(e){
-          return Left(ServerFailure(errotMessage: e.errorMessage),);
-        }
-        catch(e){
-          return Left(ServerFailure(errotMessage: "there was an error, try later"),);
-        }
-      }
+      required String name}) async {
+    User? user;
+    try {
+      user = await firebaseAuthService.createUserWithEmailAndPassword(
+          email: email, password: password);
+      UserEntity userEntity = UserEntity(
+        email: email,
+        password: password,
+        uid: user.uid,
+        userName: name,
+      );
+      return Right(userEntity);
+    } on CustomException catch (e) {
+      return Left(
+        ServerFailure(errotMessage: e.errorMessage),
+      );
+    } catch (e) {
+      return Left(
+        ServerFailure(errotMessage: "there was an error, try later"),
+      );
+    }
+  }
 
   @override
   Future<Either<Failure, UserEntity>> siginInUserWithEmailAndPassword(
-      {required String email, required String password}) async{
-      User? user;
-     try{
-      user =await firebaseAuthService.siginInUserWithEmailAndPassword(
+      {required String email, required String password}) async {
+    User? user;
+    try {
+      user = await firebaseAuthService.siginInUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      UserEntity userEntity=UserEntity(email: email, password: password, uid: user.uid);
+      UserEntity userEntity = UserEntity(
+          email: email,
+          password: password,
+          uid: user.uid,
+          userName: user.displayName!);
       return Right(userEntity);
-     
-     }
-     on CustomException catch(e){
-       return Left(ServerFailure(errotMessage: e.errorMessage),);
-     }
-     catch(e){
-       return Left(ServerFailure(errotMessage: "there was an error, try later"),);
-     }
+    } on CustomException catch (e) {
+      return Left(
+        ServerFailure(errotMessage: e.errorMessage),
+      );
+    } catch (e) {
+      return Left(
+        ServerFailure(errotMessage: "there was an error, try later"),
+      );
+    }
   }
 }

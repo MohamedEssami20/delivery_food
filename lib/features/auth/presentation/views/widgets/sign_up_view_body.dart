@@ -74,23 +74,7 @@ class _SiginUpViewBodyState extends State<SignUpViewBody> {
             CustomButton(
               title: "Register",
               onPressed: () async {
-                if (isChecked == false) {
-                  showErrorSnackBar(context,
-                      errorMessage: "you should accept terms and conditions");
-                }
-                if (formKey.currentState!.validate() && isChecked == true) {
-                  formKey.currentState!.save();
-                  await context
-                      .read<SignUpCubit>()
-                      .createUserWithEmailAndPassword(
-                        email: email!,
-                        password: password!,
-                        name: name!,
-                      );
-                } else {
-                  autovalidateMode = AutovalidateMode.always;
-                  setState(() {});
-                }
+                await onClickSignUpButton(context);
               },
             ),
             const SizedBox(
@@ -107,5 +91,25 @@ class _SiginUpViewBodyState extends State<SignUpViewBody> {
         ),
       ),
     );
+  }
+
+  Future<void> onClickSignUpButton(BuildContext context) async {
+     if (isChecked == false) {
+      showErrorSnackBar(context,
+          errorMessage: "you should accept terms and conditions");
+    }
+    if (formKey.currentState!.validate() && isChecked == true) {
+      formKey.currentState!.save();
+      await context
+          .read<SignUpCubit>()
+          .createUserWithEmailAndPassword(
+            email: email!,
+            password: password!,
+            name: name!,
+          );
+    } else {
+      autovalidateMode = AutovalidateMode.always;
+      setState(() {});
+    }
   }
 }
