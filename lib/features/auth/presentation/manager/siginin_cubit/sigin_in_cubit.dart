@@ -30,5 +30,16 @@ class SiginInCubit extends Cubit<SiginInState> {
   }
 
   //create method that sign in with google in firebas;
-  
+  Future<void> signInWithGoogle() async {
+    emit(SiginInLoading());
+    final result = await _authRepo.signInWithGoogle();
+    result.fold(
+      (failure) => emit(
+        SiginInFailure(errorMessage: failure.errotMessage),
+      ),
+      (user) => emit(
+        SiginInSuccess(userEntity: user),
+      ),
+    );
+  }
 }
