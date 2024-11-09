@@ -16,3 +16,7 @@ subprojects {
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
+
+dependencies {
+     implementation 'com.facebook.android:facebook-login:latest.release'
+}

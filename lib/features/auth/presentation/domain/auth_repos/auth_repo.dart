@@ -15,4 +15,7 @@ abstract class AuthRepo {
 
   //create method that sign in with google in firbase;
   Future<Either<Failure, UserEntity>> signInWithGoogle();
+
+  // create method that sign in with facebook in firbase;
+  Future<Either<Failure, UserEntity>> signInWithFacebook();
 }
