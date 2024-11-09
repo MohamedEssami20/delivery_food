@@ -69,8 +69,7 @@ class FirebaseAuthService {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     if (googleUser == null) {
-      throw CustomException(
-          errorMessage: "sign in with google was canceld");
+      throw CustomException(errorMessage: "sign in with google was canceld");
     }
     // Obtain the auth details from the request
     final GoogleSignInAuthentication googleAuth =
@@ -91,13 +90,17 @@ class FirebaseAuthService {
   Future<User> signInWithFacebook() async {
     // Trigger the sign-in flow
     final LoginResult loginResult = await FacebookAuth.instance.login();
+    if (loginResult.status != LoginStatus.success) {
+      throw CustomException(
+          errorMessage: "the sign in with facebook was canceld");
+    }
     // Create a credential from the access token
     final facebookAuthCredential = FacebookAuthProvider.credential(
       loginResult.accessToken!.tokenString,
     );
     // Once signed in, return the UserCredential
-    UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+    UserCredential userCredential = await FirebaseAuth.instance
+        .signInWithCredential(facebookAuthCredential);
     return userCredential.user!;
-  }  
+  }
 }
