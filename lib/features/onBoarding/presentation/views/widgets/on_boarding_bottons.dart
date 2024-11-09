@@ -1,3 +1,6 @@
+
+import 'package:delivery_food/core/constant/app_constant.dart';
+import 'package:delivery_food/core/service/register_shared_pref.dart';
 import 'package:delivery_food/features/auth/presentation/views/sigin_in_view.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +19,9 @@ class OnBoardingButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         GestureDetector(
-          onTap: () {
-            Navigator.pushReplacementNamed(context, SiginInView.routeName);
+          onTap: () async{
+           Navigator.pushReplacementNamed(context, SiginInView.routeName);
+           await SharedPrefService.setBoolean(AppConstant.setBoolKey, true); 
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -31,9 +35,10 @@ class OnBoardingButtons extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: GestureDetector(
-            onTap: () {
+            onTap: () async{
               if(pageController.page == 2) {
                Navigator.pushReplacementNamed(context, SiginInView.routeName);
+               await SharedPrefService.setBoolean(AppConstant.setBoolKey, true);
               }
               else{
                 pageController.nextPage(

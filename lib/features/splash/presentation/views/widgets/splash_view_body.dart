@@ -1,9 +1,11 @@
+import 'package:delivery_food/core/constant/app_constant.dart';
 import 'package:delivery_food/core/utils/app_assets.dart';
+import 'package:delivery_food/features/auth/presentation/views/sigin_in_view.dart';
 import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg_flutter.dart';
 
+import '../../../../../core/service/register_shared_pref.dart';
 import '../../../../../core/utils/app_text_styles.dart';
-import '../../../../onBoarding/presentation/views/on_boarding_view.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -61,9 +63,17 @@ class _SplashViewBodyState extends State<SplashViewBody>
   }
 
   void excuteSplash() async {
-    await Future.delayed(const Duration(seconds: 4), () {
-      Navigator.of(mounted ? context : context)
-          .pushReplacementNamed(OnBoardingView.routeName);
+    await Future.delayed(const Duration(seconds: 4), () async {
+      bool? isSkioOnBoarding = await SharedPrefService.getBoolean(
+        AppConstant.setBoolKey,
+      );
+      if (isSkioOnBoarding == true) {
+        Navigator.pushReplacementNamed(
+            mounted ? context : context, SiginInView.routeName);
+      } else {
+        Navigator.pushReplacementNamed(
+            mounted ? context : context, SiginInView.routeName);
+      }
     });
   }
 

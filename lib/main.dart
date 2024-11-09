@@ -9,15 +9,15 @@ import 'core/helper/func/on_genrate_route.dart';
 import 'core/service/get_it_service.dart';
 import 'firebase_options.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // registerSharedPref(); 
-   Bloc.observer=BlocObserverService(); 
-   GetItService.setup();
-   await Firebase.initializeApp(
+  // registerSharedPref();
+  Bloc.observer = BlocObserverService();
+  GetItService.setup();
+  await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
- await SharedPrefService().registerSharedPref();
+  await SharedPrefService.registerSharedPref();
   runApp(const DeliveryFood());
 }
 
