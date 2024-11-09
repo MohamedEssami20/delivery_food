@@ -1,4 +1,6 @@
+
 import 'package:delivery_food/core/service/firebase_auth_service.dart';
+import 'package:delivery_food/core/service/firestor_service.dart';
 import 'package:delivery_food/features/auth/presentation/domain/auth_repos/auth_repo.dart';
 import 'package:delivery_food/features/auth/presentation/domain/auth_repos/auth_repo_impl.dart';
 import 'package:delivery_food/features/auth/presentation/manager/sign_up_cubit/sign_up_cubit.dart';
@@ -11,9 +13,11 @@ class GetItService {
 
   static void setup() {
     getIt.registerSingleton<FirebaseAuthService>(FirebaseAuthService());
+    getIt.registerSingleton<FirestorService>(FirestorService());
     getIt.registerSingleton<AuthRepo>(
       AuthRepoImpl(
         firebaseAuthService: getIt.get<FirebaseAuthService>(),
+        firestorService: getIt.get<FirestorService>(),
       ),
     );
     getIt.registerSingleton<SiginInCubit>(

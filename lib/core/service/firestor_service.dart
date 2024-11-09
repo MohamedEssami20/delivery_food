@@ -8,7 +8,7 @@ class FirestorService extends DataBaseService {
 
   // create method that add data to firebase;
   Future<void> addData(
-      {required Map<String, dynamic> data, required String path, String? documentId})async {
+      {required Map<String, dynamic> data, required String path,required String? documentId})async {
     try {
       if(documentId==null){
         await FirebaseFirestore.instance.collection(path).add(data);

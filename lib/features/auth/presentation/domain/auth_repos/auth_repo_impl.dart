@@ -1,8 +1,10 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:delivery_food/core/constant/backend_endpoint.dart';
 import 'package:delivery_food/core/errors/custom_exception.dart';
 import 'package:delivery_food/core/errors/failure.dart';
+import 'package:delivery_food/core/service/firestor_service.dart';
 import 'package:delivery_food/features/auth/presentation/domain/auth_repos/auth_repo.dart';
 import 'package:delivery_food/features/auth/presentation/domain/entites/user_entity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,8 +14,11 @@ import '../../../data/models/user_model.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final FirebaseAuthService firebaseAuthService;
-
-  AuthRepoImpl({required this.firebaseAuthService});
+  final FirestorService firestorService;
+  AuthRepoImpl({
+    required this.firebaseAuthService,
+    required this.firestorService,
+  });
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
       {required UserModel userModel}) async {
@@ -27,6 +32,8 @@ class AuthRepoImpl extends AuthRepo {
         uid: user.uid,
         userName: userModel.userName,
       );
+      Map<String,dynamic> userData = UserModel.fromEntity(userEntity).toMap(); 
+      saveUserData(userData, user);
       return Right(userEntity);
     } on CustomException catch (e) {
       return Left(
@@ -37,6 +44,14 @@ class AuthRepoImpl extends AuthRepo {
         ServerFailure(errotMessage: "there was an error, try later"),
       );
     }
+  }
+
+  void saveUserData(Map<String, dynamic> userData, User? user) {
+     firestorService.addData(
+        data: userData,
+        path: BackendEndpoint.collectionName,
+        documentId:user!.uid ,
+        );
   }
 
   @override
@@ -94,7 +109,7 @@ class AuthRepoImpl extends AuthRepo {
       user = await firebaseAuthService.signInWithFacebook();
       UserEntity userEntity = UserModel.formFirebase(user).toEntity();
       return Right(
-       userEntity,
+        userEntity,
       );
     } on CustomException catch (e) {
       return Left(
