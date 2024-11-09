@@ -42,4 +42,18 @@ class SiginInCubit extends Cubit<SiginInState> {
       ),
     );
   }
+
+  // create method that sign in with facebook in firebas;
+  Future<void> signInWithFacebook() async {
+    emit(SiginInLoading());
+    final result = await _authRepo.signInWithFacebook();
+    result.fold(
+      (failure) => emit(
+        SiginInFailure(errorMessage: failure.errotMessage),
+      ),
+      (user) => emit(
+        SiginInSuccess(userEntity: user),
+      ),
+    );
+  }
 }
