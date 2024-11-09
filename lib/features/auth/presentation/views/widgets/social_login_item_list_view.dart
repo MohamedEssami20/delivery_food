@@ -28,10 +28,15 @@ class SocialLoginItemListView extends StatelessWidget {
         const SizedBox(
           width: 8,
         ),
-        const SocialIcon(
-          icon: Assets.assetsImagesFacebookIcon,
-          size: 22,
-          height: 24,
+        GestureDetector(
+          onTap: () async {
+            await context.read<SiginInCubit>().signInWithFacebook();
+          },
+          child: const SocialIcon(
+            icon: Assets.assetsImagesFacebookIcon,
+            size: 22,
+            height: 24,
+          ),
         ),
         const SizedBox(
           width: 8,
