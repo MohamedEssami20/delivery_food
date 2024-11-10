@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:delivery_food/features/splash/presentation/views/splash_view.dart';
 
 import '../../../features/auth/presentation/views/forget_password_view.dart';
+import '../../../features/auth/presentation/views/otp_view.dart';
 import '../../../features/auth/presentation/views/sigin_in_view.dart';
 import '../../../features/auth/presentation/views/sign_up_view.dart';
 import '../../../features/home/presentation/views/home_view.dart';
@@ -18,9 +19,12 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     case SignUpView.routeName:
       return MaterialPageRoute(builder: (context) => const SignUpView());
     case ForgetPasswordView.routeName:
-      return MaterialPageRoute(builder: (context) => const ForgetPasswordView());
+      return MaterialPageRoute(
+          builder: (context) => const ForgetPasswordView());
     case HomeView.routeName:
       return MaterialPageRoute(builder: (context) => const HomeView());
+    case OtpView.routeName:
+      return MaterialPageRoute(builder: (context) => const OtpView());
     // Add more routes here as needed
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());

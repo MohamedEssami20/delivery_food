@@ -1,5 +1,6 @@
 import 'package:delivery_food/core/utils/widgets/custom_button.dart';
 import 'package:delivery_food/core/utils/widgets/custom_text_field.dart';
+import 'package:delivery_food/features/auth/presentation/views/otp_view.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/login_or_rigster_header.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +36,12 @@ class ForgetPasswordViewBody extends StatelessWidget {
             height: 30,
           ),
           const Spacer(),
-          CustomButton(title: "Continue", onPressed: () {}),
+          CustomButton(
+            title: "Continue",
+            onPressed: () {
+              Navigator.of(context).pushNamed(OtpView.routeName);
+            },
+          ),
           const SizedBox(
             height: 40,
           ),
