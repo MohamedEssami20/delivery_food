@@ -16,7 +16,7 @@ class LoginOrRegisterHeader extends StatelessWidget {
           style: AppTextStyles.semiBold16.copyWith(fontSize: 37),
         ),
         const SizedBox(
-          height: 4,
+          height: 8,
         ),
         Text(
           subTitle,

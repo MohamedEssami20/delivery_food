@@ -1,5 +1,3 @@
-
-
 import 'package:delivery_food/features/auth/presentation/views/widgets/otp_view_body.dart';
 import 'package:flutter/material.dart';
 
@@ -8,8 +6,9 @@ class OtpView extends StatelessWidget {
   static const String routeName = 'otp';
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: OtpViewBody(),
+    return  const Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(child: OtpViewBody()),
     );
   }
 }
