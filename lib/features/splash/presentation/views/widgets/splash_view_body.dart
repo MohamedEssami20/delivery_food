@@ -6,6 +6,7 @@ import 'package:svg_flutter/svg_flutter.dart';
 
 import '../../../../../core/service/register_shared_pref.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../home/presentation/views/home_view.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -67,9 +68,17 @@ class _SplashViewBodyState extends State<SplashViewBody>
       bool? isSkioOnBoarding = await SharedPrefService.getBoolean(
         AppConstant.setBoolKey,
       );
+      String? user =
+          await SharedPrefService.getString(AppConstant.saveEmailKey);
       if (isSkioOnBoarding == true) {
-        Navigator.pushReplacementNamed(
+        if (user != null) {
+          Navigator.pushReplacementNamed(mounted ? context : context,
+              HomeView.routeName);
+        }
+        else{
+           Navigator.pushReplacementNamed(
             mounted ? context : context, SiginInView.routeName);
+        }
       } else {
         Navigator.pushReplacementNamed(
             mounted ? context : context, SiginInView.routeName);

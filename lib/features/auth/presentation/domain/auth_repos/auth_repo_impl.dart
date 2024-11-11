@@ -1,10 +1,12 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:delivery_food/core/constant/app_constant.dart';
 import 'package:delivery_food/core/constant/backend_endpoint.dart';
 import 'package:delivery_food/core/errors/custom_exception.dart';
 import 'package:delivery_food/core/errors/failure.dart';
 import 'package:delivery_food/core/service/firestor_service.dart';
+import 'package:delivery_food/core/service/register_shared_pref.dart';
 import 'package:delivery_food/features/auth/presentation/domain/auth_repos/auth_repo.dart';
 import 'package:delivery_food/features/auth/presentation/domain/entites/user_entity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -32,7 +34,7 @@ class AuthRepoImpl extends AuthRepo {
         uid: user.uid,
         userName: userModel.userName,
       );
-      Map<String,dynamic> userData = UserModel.fromEntity(userEntity).toMap(); 
+      Map<String, dynamic> userData = UserModel.fromEntity(userEntity).toMap();
       saveUserData(userData, user);
       return Right(userEntity);
     } on CustomException catch (e) {
@@ -47,11 +49,17 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   void saveUserData(Map<String, dynamic> userData, User? user) {
-     firestorService.addData(
-        data: userData,
-        path: BackendEndpoint.collectionName,
-        documentId:user!.uid ,
-        );
+    firestorService.addData(
+      data: userData,
+      path: BackendEndpoint.collectionName,
+      documentId: user!.uid,
+    );
+  }
+
+  // create method that svave user data in shared pref;
+  Future<void> saveUserEmail(UserEntity userEntity) async {
+    await SharedPrefService.setString(
+        AppConstant.saveEmailKey, userEntity.email);
   }
 
   @override
@@ -69,6 +77,7 @@ class AuthRepoImpl extends AuthRepo {
           password: userModel.password,
           uid: user.uid,
           userName: userModel.userName);
+      await saveUserEmail(userEntity);
       return Right(userEntity);
     } on CustomException catch (e) {
       log("userEntity ${user!.displayName}");
