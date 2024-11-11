@@ -19,8 +19,8 @@ class Assets {
   static const String assetsImagesGoogleIcon = "assets/images/google_icon.svg";
 
   /// Assets for assetsImagesHomeImage
-  /// assets/images/home_image.svg
-  static const String assetsImagesHomeImage = "assets/images/home_image.svg";
+  /// assets/images/home_image.png
+  static const String assetsImagesHomeImage = "assets/images/home_image.png";
 
   /// Assets for assetsImagesImageOnboardingBackground
   /// assets/images/image_onboarding_background.png
