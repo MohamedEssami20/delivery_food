@@ -1,4 +1,3 @@
-
 import 'package:delivery_food/core/utils/app_text_styles.dart';
 import 'package:delivery_food/core/utils/widgets/custom_button.dart';
 import 'package:delivery_food/core/utils/widgets/custom_text_field.dart';
@@ -10,6 +9,7 @@ import 'package:delivery_food/features/auth/presentation/views/widgets/social_lo
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/constant/app_constant.dart';
+import '../../../../home/presentation/views/home_view.dart';
 import '../../../../onBoarding/presentation/views/widgets/forget_password.dart';
 import '../../../data/models/user_model.dart';
 import '../../manager/siginin_cubit/sigin_in_cubit.dart';
@@ -157,7 +157,10 @@ class _SiginInViewBodyState extends State<SiginInViewBody> {
 
       await context
           .read<SiginInCubit>()
-          .siginInUserWithEmailAndPassword(userModel: userModel);
+          .siginInUserWithEmailAndPassword(userModel: userModel)
+          .then((value) {
+        Navigator.of(mounted?context:context).pushNamed(HomeView.routeName);
+      });
     } else {
       autovalidateMode = AutovalidateMode.always;
       setState(() {});
