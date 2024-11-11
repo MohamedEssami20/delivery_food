@@ -4,6 +4,7 @@ import 'package:delivery_food/features/splash/presentation/views/splash_view.dar
 
 import '../../../features/auth/presentation/views/forget_password_view.dart';
 import '../../../features/auth/presentation/views/otp_view.dart';
+import '../../../features/auth/presentation/views/reset_password_view.dart';
 import '../../../features/auth/presentation/views/sigin_in_view.dart';
 import '../../../features/auth/presentation/views/sign_up_view.dart';
 import '../../../features/home/presentation/views/home_view.dart';
@@ -25,6 +26,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const HomeView());
     case OtpView.routeName:
       return MaterialPageRoute(builder: (context) => const OtpView());
+    case ResetPasswordView.routeName:
+      return MaterialPageRoute(builder: (context) => const ResetPasswordView());
     // Add more routes here as needed
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());

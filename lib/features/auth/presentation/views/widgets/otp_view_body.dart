@@ -5,6 +5,7 @@ import 'package:delivery_food/features/auth/presentation/views/widgets/otp_text_
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/widgets/custom_button.dart';
+import '../reset_password_view.dart';
 
 class OtpViewBody extends StatelessWidget {
   const OtpViewBody({super.key});
@@ -49,7 +50,9 @@ class OtpViewBody extends StatelessWidget {
             height: 70,
             child: CustomButton(
               title: "Continue",
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, ResetPasswordView.routeName);
+              },
             ),
           ),
         ],
