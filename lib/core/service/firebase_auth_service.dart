@@ -9,7 +9,6 @@ class FirebaseAuthService {
 // create method that register user to firebase;
   Future<User> createUserWithEmailAndPassword(
       {required String email, required String password}) async {
-        
     try {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -104,4 +103,10 @@ class FirebaseAuthService {
         .signInWithCredential(facebookAuthCredential);
     return userCredential.user!;
   }
+
+  // create method that send email to reset password form firebase;
+  static Future<void> sendEmailToResetPassword({required String email}) async {  
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email); 
+  }
+
 }
