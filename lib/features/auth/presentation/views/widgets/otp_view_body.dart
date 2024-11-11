@@ -1,9 +1,10 @@
+
 import 'package:delivery_food/core/utils/widgets/custom_app_bar.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/dont_recieve_code.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/login_or_rigster_header.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/otp_text_field.dart';
+import 'package:delivery_food/features/auth/presentation/views/widgets/timer_widget.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../../core/utils/widgets/custom_button.dart';
 import '../reset_password_view.dart';
 
@@ -43,8 +44,9 @@ class OtpViewBody extends StatelessWidget {
           ),
           const DontRecieveCode(),
           const Padding(
-            padding: EdgeInsets.only(top: 50),
+            padding: EdgeInsets.only(top: 30),
           ),
+          const TimerWidget(),
           const Spacer(),
           SizedBox(
             height: 70,
