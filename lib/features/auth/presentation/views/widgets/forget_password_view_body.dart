@@ -1,3 +1,4 @@
+import 'package:delivery_food/core/service/send_email_service.dart';
 import 'package:delivery_food/core/utils/widgets/custom_button.dart';
 import 'package:delivery_food/core/utils/widgets/custom_text_field.dart';
 import 'package:delivery_food/features/auth/presentation/views/otp_view.dart';
@@ -38,8 +39,9 @@ class ForgetPasswordViewBody extends StatelessWidget {
           const Spacer(),
           CustomButton(
             title: "Continue",
-            onPressed: () {
+            onPressed: () async {
               Navigator.of(context).pushNamed(OtpView.routeName);
+              await SendEmailService.sendEmailToUser(email: "mohamedakaw@gmail.com");
             },
           ),
           const SizedBox(
