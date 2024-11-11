@@ -62,6 +62,7 @@ class TimerWidgetState extends State<TimerWidget> {
           formattedTime, // عرض الوقت المتبقي
           style: AppTextStyles.medium14.copyWith(
             color: const Color(0xFF878787),
+            fontSize: 16,
           ),
         ),
       ],

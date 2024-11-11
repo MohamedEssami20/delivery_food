@@ -1,4 +1,3 @@
-
 import 'package:delivery_food/core/utils/widgets/custom_app_bar.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/dont_recieve_code.dart';
 import 'package:delivery_food/features/auth/presentation/views/widgets/login_or_rigster_header.dart';
@@ -29,15 +28,9 @@ class OtpViewBody extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.only(top: 80),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(
-              4,
-              (index) => const Padding(
-                padding: EdgeInsets.all(16),
-                child: OtpTextField(),
-              ),
-            ),
+          const Padding(
+            padding: EdgeInsets.all(16),
+            child: OtpTextField(),
           ),
           const Padding(
             padding: EdgeInsets.only(top: 30),
