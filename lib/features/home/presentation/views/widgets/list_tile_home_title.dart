@@ -15,7 +15,7 @@ class ListTileHomeTitle extends StatelessWidget {
           'Your Location',
           textAlign: TextAlign.center,
           style: AppTextStyles.regular16
-              .copyWith(color: Colors.white),
+              .copyWith(color: Colors.white, fontSize: 20),
         ),
         const Padding(
           padding: EdgeInsets.only(left: 10),
@@ -24,7 +24,7 @@ class ListTileHomeTitle extends StatelessWidget {
           angle: -3.14 / 2,
           child: const Icon(
             Icons.arrow_back_ios_new_outlined,
-            size: 15,
+            size: 20,
             color: Colors.white,
           ),
         ),
