@@ -1,13 +1,11 @@
-import 'package:delivery_food/core/utils/app_assets.dart';
 import 'package:delivery_food/core/utils/app_color.dart';
 import 'package:delivery_food/core/utils/app_text_styles.dart';
-import 'package:delivery_food/features/home/presentation/views/widgets/category_item.dart';
+import 'package:delivery_food/features/home/presentation/views/widgets/category_item_list_view.dart';
 import 'package:delivery_food/features/home/presentation/views/widgets/home_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,11 +31,7 @@ class HomeViewBody extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-             const Row(
-                children: [
-                  CategoryItem(),
-                ],
-              )
+             const CategoryItemListView(),
             ],
           ),
         )
@@ -45,4 +39,5 @@ class HomeViewBody extends StatelessWidget {
     );
   }
 }
+
 

@@ -34,6 +34,18 @@ class Assets {
   /// assets/images/image_onboarding_background.png
   static const String assetsImagesImageOnboardingBackground = "assets/images/image_onboarding_background.png";
 
+  /// Assets for assetsImagesJuice
+  /// assets/images/juice.png
+  static const String assetsImagesJuice = "assets/images/juice.png";
+
+  /// Assets for assetsImagesPizza
+  /// assets/images/pizza.png
+  static const String assetsImagesPizza = "assets/images/pizza.png";
+
+  /// Assets for assetsImagesSandwich
+  /// assets/images/sandwich.png
+  static const String assetsImagesSandwich = "assets/images/sandwich.png";
+
   /// Assets for assetsImagesSplashImage
   /// assets/images/splash_image.svg
   static const String assetsImagesSplashImage = "assets/images/splash_image.svg";
