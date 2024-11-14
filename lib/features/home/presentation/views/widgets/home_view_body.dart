@@ -1,7 +1,9 @@
+
 import 'package:delivery_food/core/utils/app_color.dart';
 import 'package:delivery_food/core/utils/app_text_styles.dart';
 import 'package:delivery_food/features/home/presentation/views/widgets/category_item_list_view.dart';
 import 'package:delivery_food/features/home/presentation/views/widgets/home_app_bar.dart';
+import 'package:delivery_food/features/home/presentation/views/widgets/product_item.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -31,7 +33,11 @@ class HomeViewBody extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-             const CategoryItemListView(),
+              const CategoryItemListView(),
+              const SizedBox(
+                height: 40,
+              ),
+              const ProductItem(),
             ],
           ),
         )
@@ -39,5 +45,4 @@ class HomeViewBody extends StatelessWidget {
     );
   }
 }
-
 

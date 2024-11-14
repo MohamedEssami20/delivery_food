@@ -25,9 +25,13 @@ class _CategoryItemListViewState extends State<CategoryItemListView> {
           return Padding(
             padding: const EdgeInsets.only(right: 25),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                setState(() {
+                  currentIndex = index;
+                });
+              },
               child: CategoryItem(
-                isSelected: currentIndex==index,
+                isSelected: currentIndex == index,
                 image: CategoryItemModel.categories[index].image,
                 title: CategoryItemModel.categories[index].title,
               ),

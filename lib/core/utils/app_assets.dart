@@ -42,6 +42,10 @@ class Assets {
   /// assets/images/pizza.png
   static const String assetsImagesPizza = "assets/images/pizza.png";
 
+  /// Assets for assetsImagesProduct
+  /// assets/images/product.png
+  static const String assetsImagesProduct = "assets/images/product.png";
+
   /// Assets for assetsImagesSandwich
   /// assets/images/sandwich.png
   static const String assetsImagesSandwich = "assets/images/sandwich.png";
