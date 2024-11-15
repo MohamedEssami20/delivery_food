@@ -1,12 +1,18 @@
+
 import 'package:delivery_food/features/home/presentation/views/widgets/category_item_list_view.dart';
 import 'package:delivery_food/features/home/presentation/views/widgets/home_app_bar.dart';
 import 'package:flutter/material.dart';
-
 import 'find_by_category.dart';
 import 'product_items_list_view.dart';
 
-class HomeViewBody extends StatelessWidget {
+class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
+
+  @override
+  State<HomeViewBody> createState() => _HomeViewBodyState();
+}
+
+class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   Widget build(BuildContext context) {
     return const Column(
@@ -25,8 +31,9 @@ class HomeViewBody extends StatelessWidget {
             slivers: [
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 32),
-                  child: CategoryItemListView(),
+                  padding:  EdgeInsets.symmetric(horizontal: 32),
+                  child: CategoryItemListView(
+                  ),
                 ),
               ),
               SliverToBoxAdapter(
@@ -37,7 +44,9 @@ class HomeViewBody extends StatelessWidget {
                 fillOverscroll: true,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 32),
-                  child: ProductItemsListView(),
+                  child:  ProductItemsListView(
+                    
+                  ),
                 ),
               )
             ],

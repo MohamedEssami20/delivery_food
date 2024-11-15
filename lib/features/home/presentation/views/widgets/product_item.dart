@@ -1,13 +1,15 @@
 import 'package:delivery_food/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../../core/utils/app_assets.dart';
 import '../../../../../core/utils/app_color.dart';
+import '../../../data/models/product_model.dart';
 import 'product_rating_and_location.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key});
-
+  const ProductItem({
+    super.key,
+    required this.productModel,
+  });
+  final ProductModel productModel;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -18,11 +20,11 @@ class ProductItem extends StatelessWidget {
           children: [
             Container(
               height: 200,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(12)),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(12)),
                 image: DecorationImage(
                     image: AssetImage(
-                      Assets.assetsImagesProduct,
+                      productModel.image,
                     ),
                     fit: BoxFit.fitWidth),
               ),
@@ -30,17 +32,20 @@ class ProductItem extends StatelessWidget {
             const SizedBox(height: 10),
             Center(
               child: Text(
-                'Ordinary Burgers',
+                productModel.title,
                 textAlign: TextAlign.center,
                 style: AppTextStyles.medium14
                     .copyWith(color: Colors.black, fontSize: 20),
               ),
             ),
             const SizedBox(height: 10),
-            const ProductRatingAndLocation(),
+            ProductRatingAndLocation(
+              ratingCount: productModel.ratingCount,
+              distance: productModel.distance,
+            ),
             const SizedBox(height: 12),
             Text(
-              '\$ 17,230',
+              '\$ ${productModel.price}',
               textAlign: TextAlign.start,
               style: AppTextStyles.semiBold16
                   .copyWith(color: AppColor.primaryColor, fontSize: 20),

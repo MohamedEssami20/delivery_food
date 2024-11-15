@@ -5,9 +5,10 @@ import '../../../../../core/utils/app_text_styles.dart';
 
 class ProductRatingAndLocation extends StatelessWidget {
   const ProductRatingAndLocation({
-    super.key,
+    super.key, required this.ratingCount, required this.distance,
   });
-
+  final double ratingCount;
+  final int distance;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +22,7 @@ class ProductRatingAndLocation extends StatelessWidget {
                 Icons.star,
                 color: AppColor.primaryColor,
               ),
-              Text('4.9',
+              Text(ratingCount.toString(),
                   textAlign: TextAlign.center,
                   style: AppTextStyles.medium14.copyWith(
                     color: Colors.black,
@@ -35,7 +36,7 @@ class ProductRatingAndLocation extends StatelessWidget {
                 color: AppColor.primaryColor,
               ),
               Text(
-                '190m',
+                '$distance m',
                 textAlign: TextAlign.center,
                 style: AppTextStyles.medium14.copyWith(
                   color: Colors.black,
