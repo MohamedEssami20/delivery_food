@@ -4,13 +4,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../app_color.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
-  const BottomNavigationBarWidget({super.key});
-
+  const BottomNavigationBarWidget({
+    super.key, required this.currentIndex, required this.onTap,
+  });
+  final int currentIndex;
+  final void Function(int) onTap;
   @override
   Widget build(BuildContext context) {
-    int currentIndex = 0;
-    return StatefulBuilder(
-      builder: (context, setState) => BottomNavigationBar(
+    return BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
         elevation: 0.0,
         currentIndex: currentIndex,
@@ -18,11 +19,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
         landscapeLayout: BottomNavigationBarLandscapeLayout.spread,
         selectedItemColor: AppColor.primaryColor,
         unselectedItemColor: Colors.black54,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
+        onTap: onTap,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(
@@ -30,7 +27,6 @@ class BottomNavigationBarWidget extends StatelessWidget {
           BottomNavigationBarItem(icon: Icon(Icons.chat_bubble), label: "Chat"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
-      ),
     );
   }
 }
