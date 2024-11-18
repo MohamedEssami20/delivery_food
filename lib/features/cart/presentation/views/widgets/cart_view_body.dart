@@ -3,6 +3,7 @@ import 'package:delivery_food/core/utils/app_text_styles.dart';
 import 'package:delivery_food/core/utils/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'my_cart_app_bar.dart';
+import 'promo_code_text_field.dart';
 
 class CartViewBody extends StatelessWidget {
   const CartViewBody({super.key});
@@ -47,8 +48,13 @@ class CartViewBody extends StatelessWidget {
               fontSize: 20,
             ),
           ),
+          const SizedBox(
+            height: 40,
+          ),
+          const PromoCodeTextField(),
         ],
       ),
     );
   }
 }
+
