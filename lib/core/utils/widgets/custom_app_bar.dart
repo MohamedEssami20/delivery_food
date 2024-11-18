@@ -26,7 +26,8 @@ class CustomAppBar extends StatelessWidget {
         const Spacer(),
         Text(
           title,
-          style: AppTextStyles.semiBold16.copyWith(color: Colors.black),
+          style: AppTextStyles.semiBold16
+              .copyWith(color: Colors.black, fontSize: 20),
         ),
         const Spacer(),
         actions,
