@@ -5,10 +5,12 @@ class CustomButtonDotsIndicator extends StatelessWidget {
   const CustomButtonDotsIndicator({
     super.key,
     required this.currentPage,
+    this.activeColor, this.inActiveColor,
   });
 
   final int currentPage;
-
+  final Color? activeColor;
+  final Color? inActiveColor;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -19,8 +21,8 @@ class CustomButtonDotsIndicator extends StatelessWidget {
           dotsCount: 3,
           axis: Axis.horizontal,
           decorator: DotsDecorator(
-            activeColor: Colors.white,
-            color: const Color(0xFFC2C2C2),
+            activeColor: activeColor ?? Colors.white,
+            color:inActiveColor?? const Color(0xFFC2C2C2),
             size: const Size(32, 6),
             activeSize: const Size(32, 6),
             activeShape: RoundedRectangleBorder(
