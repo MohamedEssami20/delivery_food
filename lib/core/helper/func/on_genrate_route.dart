@@ -9,6 +9,7 @@ import '../../../features/auth/presentation/views/sigin_in_view.dart';
 import '../../../features/auth/presentation/views/sign_up_view.dart';
 import '../../../features/cart/presentation/views/cart_view.dart';
 import '../../../features/chat/presentation/views/chat_view.dart';
+import '../../../features/home/presentation/views/details_view.dart';
 import '../../../features/home/presentation/views/home_view.dart';
 import '../../../features/profile/presentation/views/profile_view.dart';
 
@@ -47,6 +48,9 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
 
     case ProfileView.routeName:
       return MaterialPageRoute(builder: (context) => const ProfileView());
+
+    case DetailsView.routeName:
+      return MaterialPageRoute(builder: (context) => const DetailsView());
       
     // Add more routes here as needed
     default:

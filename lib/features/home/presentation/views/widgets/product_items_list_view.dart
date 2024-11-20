@@ -1,3 +1,4 @@
+import 'package:delivery_food/features/home/presentation/views/details_view.dart';
 import 'package:delivery_food/features/home/presentation/views/widgets/product_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +28,12 @@ class ProductItemsListView extends StatelessWidget {
           itemBuilder: (context, index) {
             final currentCategory = products[currentindex];
             final ProductModel productModel = currentCategory;
-            return ProductItem(productModel: productModel);
+            return GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, DetailsView.routeName);
+              },
+              child: ProductItem(productModel: productModel),
+            );
           },
         );
       },
