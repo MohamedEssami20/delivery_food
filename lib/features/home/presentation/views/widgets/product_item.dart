@@ -44,11 +44,14 @@ class ProductItem extends StatelessWidget {
               distance: productModel.distance,
             ),
             const SizedBox(height: 12),
-            Text(
-              '\$ ${productModel.price}',
-              textAlign: TextAlign.start,
-              style: AppTextStyles.semiBold16
-                  .copyWith(color: AppColor.primaryColor, fontSize: 20),
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Text(
+                '\$ ${productModel.price}',
+                textAlign: TextAlign.start,
+                style: AppTextStyles.semiBold16
+                    .copyWith(color: AppColor.primaryColor, fontSize: 20),
+              ),
             ),
           ],
         ),
