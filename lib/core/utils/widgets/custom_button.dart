@@ -9,11 +9,13 @@ class CustomButton extends StatelessWidget {
       required this.title,
       required this.onPressed,
       this.color,
-      this.textColor});
+      this.textColor,
+      this.icon});
   final String title;
   final VoidCallback onPressed;
   final Color? color;
   final Color? textColor;
+  final IconData? icon;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -27,10 +29,28 @@ class CustomButton extends StatelessWidget {
       ),
       onPressed: onPressed,
       child: Center(
-        child: Text(
-          title,
-          style: AppTextStyles.semiBold16
-              .copyWith(color: textColor ?? Colors.white),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Visibility(
+              visible: icon != null,
+              child: Icon(
+                icon,
+                color: Colors.white,
+              ),
+            ),
+            Visibility(
+              visible: icon != null,
+              child: const SizedBox(
+                width: 12,
+              ),
+            ),
+            Text(
+              title,
+              style: AppTextStyles.semiBold16
+                  .copyWith(color: textColor ?? Colors.white),
+            ),
+          ],
         ),
       ),
     );

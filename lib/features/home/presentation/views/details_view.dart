@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
+import 'widgets/custom_bottom_details_app_bar.dart';
 import 'widgets/detailes_view_body.dart';
 
 class DetailsView extends StatelessWidget {
@@ -8,6 +9,7 @@ class DetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      bottomNavigationBar: CustomBottomDetailsAppBar(),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: DetailesViewBody(),
@@ -15,3 +17,4 @@ class DetailsView extends StatelessWidget {
     );
   }
 }
+
