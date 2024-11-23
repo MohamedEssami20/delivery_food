@@ -11,6 +11,7 @@ import '../../../features/cart/presentation/views/cart_view.dart';
 import '../../../features/chat/presentation/views/chat_view.dart';
 import '../../../features/home/presentation/views/details_view.dart';
 import '../../../features/home/presentation/views/home_view.dart';
+import '../../../features/home/presentation/views/notification_view.dart';
 import '../../../features/profile/presentation/views/profile_view.dart';
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
@@ -51,7 +52,9 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
 
     case DetailsView.routeName:
       return MaterialPageRoute(builder: (context) => const DetailsView());
-      
+    
+    case NotificationView.routeName:
+      return MaterialPageRoute(builder: (context) => const NotificationView());
     // Add more routes here as needed
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());

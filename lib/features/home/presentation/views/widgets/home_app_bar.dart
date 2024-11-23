@@ -1,4 +1,5 @@
 import 'package:delivery_food/core/utils/app_text_styles.dart';
+import 'package:delivery_food/features/home/presentation/views/notification_view.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/utils/app_assets.dart';
 import 'list_tile_home_title.dart';
@@ -30,18 +31,24 @@ class AppBarHomeView extends StatelessWidget {
                 width: MediaQuery.of(context).size.width - 60,
                 child: ListTile(
                   title: const ListTileHomeTitle(),
-                  trailing: const FittedBox(
+                  trailing: FittedBox(
                     fit: BoxFit.fitWidth,
                     child: Row(
                       children: [
-                        ListTileHomeTrailing(
+                        const ListTileHomeTrailing(
                           icon: Icons.search_outlined,
                         ),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.only(left: 15),
                         ),
-                        ListTileHomeTrailing(
-                          icon: Icons.notifications_outlined,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context)
+                                .pushNamed(NotificationView.routeName);
+                          },
+                          child: const ListTileHomeTrailing(
+                            icon: Icons.notifications_outlined,
+                          ),
                         ),
                       ],
                     ),
