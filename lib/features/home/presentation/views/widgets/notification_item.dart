@@ -1,18 +1,14 @@
+import 'package:delivery_food/features/home/data/models/notification_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_text_styles.dart';
 
 class NotificationItem extends StatelessWidget {
   const NotificationItem(
-      {super.key,
-      required this.icon,
-      required this.title,
-      required this.subTitle,
-      required this.color});
-  final IconData icon;
-  final String title;
-  final String subTitle;
-  final Color color;
+      {super.key, required this.notificationModel,
+      });
+
+  final NotificationModel notificationModel;
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -23,10 +19,10 @@ class NotificationItem extends StatelessWidget {
       leading: CircleAvatar(
         radius: 50,
         backgroundColor: const Color(0xFFF5F5FF),
-        child: Icon(icon, color: color, size: 35),
+        child: Icon(notificationModel.icon, color: notificationModel.color, size: 35),
       ),
       title: Text(
-        title,
+        notificationModel.title,
         style: AppTextStyles.semiBold16.copyWith(
           color: Colors.black,
           fontSize: 20,
@@ -36,7 +32,7 @@ class NotificationItem extends StatelessWidget {
       subtitle: Padding(
         padding: const EdgeInsets.only(top: 12),
         child: Text(
-          subTitle,
+          notificationModel.subtitle,
           style: AppTextStyles.regular16.copyWith(
             color: const Color(0xFF878787),
             height: 0.97,
