@@ -1,7 +1,8 @@
+import 'package:delivery_food/core/utils/app_color.dart';
 import 'package:delivery_food/core/utils/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../../core/utils/app_text_styles.dart';
+import 'notification_item.dart';
 
 class NotificationViewBody extends StatelessWidget {
   const NotificationViewBody({super.key});
@@ -29,9 +30,34 @@ class NotificationViewBody extends StatelessWidget {
                 fontSize: 20,
               ),
             ),
+            const SizedBox(
+              height: 16,
+            ),
+            const NotificationItem(
+                icon: Icons.discount_rounded,
+                color: AppColor.primaryColor,
+                title: "30% Special Discount!",
+                subTitle: "Special promotion only valid today"),
+            const SizedBox(
+              height: 20,
+            ),
+            const NotificationItem(
+                icon: Icons.check_circle_sharp,
+                color: Colors.green,
+                title: "Your Order Has Been Taken by the Driver!",
+                subTitle: "Recently"),
+            const SizedBox(
+              height: 20,
+            ),
+            const NotificationItem(
+                icon: Icons.cancel_sharp,
+                color: Colors.red,
+                title: "Your Order Has Been Canceled",
+                subTitle: "19 Jun 2023"),
           ],
         ),
       ),
     );
   }
 }
+
