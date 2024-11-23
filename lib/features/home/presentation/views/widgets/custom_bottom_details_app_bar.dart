@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/widgets/custom_button.dart';
 import '../../../../cart/presentation/views/widgets/increment_and_decrement_button.dart';
+import '../../../../payment/presentation/view/payment_view.dart';
 
 class CustomBottomDetailsAppBar extends StatelessWidget {
   const CustomBottomDetailsAppBar({super.key});
@@ -39,7 +40,9 @@ class CustomBottomDetailsAppBar extends StatelessWidget {
             width: 300,
             child: CustomButton(
               title: "Add To Cart",
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(PaymentView.routeName);
+              },
               icon: FontAwesomeIcons.basketShopping,
             ),
           ),
