@@ -26,10 +26,13 @@ class DeliveryFood extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerateRoute,
       initialRoute: SplashView.routeName,
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+      ),
     );
   }
 }
