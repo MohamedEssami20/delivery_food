@@ -1,6 +1,7 @@
 import 'package:delivery_food/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'profile_information.dart';
+import 'profile_item.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({super.key});
@@ -18,8 +19,62 @@ class ProfileViewBody extends StatelessWidget {
           ),
           Text(
             'Profile',
-            style: AppTextStyles.medium14
-                .copyWith(color: const Color(0xFF878787), fontSize: 16,),
+            style: AppTextStyles.medium14.copyWith(
+              color: const Color(0xFF878787),
+              fontSize: 16,
+            ),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          const ProfileItem(
+            title: 'Personal Data',
+            icon: Icons.person_outline,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const ProfileItem(
+            title: 'Settings',
+            icon: Icons.settings_outlined,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const ProfileItem(
+            title: 'Extra Card',
+            icon: Icons.credit_card_outlined,
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Text(
+            'Support',
+            style: AppTextStyles.medium14.copyWith(
+              color: const Color(0xFF878787),
+              fontSize: 16,
+            ),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          const ProfileItem(
+            title: 'Help Center',
+            icon: Icons.help_center_outlined,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const ProfileItem(
+            title: 'Request Account Deletion',
+            icon: Icons.delete_outline_outlined,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const ProfileItem(
+            title: 'Add another account',
+            icon: Icons.person_add_alt_1_outlined,
           ),
         ],
       ),
