@@ -19,12 +19,16 @@ class Assets {
   static const String assetsImagesCheck = "assets/images/Check.svg";
 
   /// Assets for assetsImagesDiscountIcon
-  /// assets/images/discount_icon.png
-  static const String assetsImagesDiscountIcon = "assets/images/discount_icon.png";
+  /// assets/images/discount_icon.svg
+  static const String assetsImagesDiscountIcon = "assets/images/discount_icon.svg";
 
   /// Assets for assetsImagesDotsIcon
   /// assets/images/dots_icon.svg
   static const String assetsImagesDotsIcon = "assets/images/dots_icon.svg";
+
+  /// Assets for assetsImagesDoubleCheckIcon
+  /// assets/images/double_check_icon.svg
+  static const String assetsImagesDoubleCheckIcon = "assets/images/double_check_icon.svg";
 
   /// Assets for assetsImagesFacebookIcon
   /// assets/images/facebook_icon.svg
@@ -53,6 +57,18 @@ class Assets {
   /// Assets for assetsImagesProduct
   /// assets/images/product.png
   static const String assetsImagesProduct = "assets/images/product.png";
+
+  /// Assets for assetsImagesProfileImag2
+  /// assets/images/profile_imag2.jpg
+  static const String assetsImagesProfileImag2 = "assets/images/profile_imag2.jpg";
+
+  /// Assets for assetsImagesProfileImage1
+  /// assets/images/profile_image1.jpg
+  static const String assetsImagesProfileImage1 = "assets/images/profile_image1.jpg";
+
+  /// Assets for assetsImagesProfileImage3
+  /// assets/images/profile_image3.jpg
+  static const String assetsImagesProfileImage3 = "assets/images/profile_image3.jpg";
 
   /// Assets for assetsImagesSandwich
   /// assets/images/sandwich.png
