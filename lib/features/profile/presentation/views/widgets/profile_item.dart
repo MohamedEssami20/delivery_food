@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 
 class ProfileItem extends StatelessWidget {
-  const ProfileItem({super.key, required this.title, required this.icon});
+  const ProfileItem({super.key, required this.title, required this.icon, required this.onTap});
   final String title;
   final IconData icon;
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: onTap,
       leading: Icon(icon),
       title: Text(
         title,

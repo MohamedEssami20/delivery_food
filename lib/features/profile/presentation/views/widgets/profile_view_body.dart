@@ -1,5 +1,6 @@
 import 'package:delivery_food/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import '../app_settings.dart';
 import 'profile_information.dart';
 import 'profile_item.dart';
 
@@ -27,23 +28,28 @@ class ProfileViewBody extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          const ProfileItem(
+          ProfileItem(
             title: 'Personal Data',
             icon: Icons.person_outline,
+            onTap: () {},
           ),
           const SizedBox(
             height: 20,
           ),
-          const ProfileItem(
+          ProfileItem(
             title: 'Settings',
             icon: Icons.settings_outlined,
+            onTap: () {
+              Navigator.pushNamed(context, AppSettingsView.routeName);
+            },
           ),
           const SizedBox(
             height: 20,
           ),
-          const ProfileItem(
+          ProfileItem(
             title: 'Extra Card',
             icon: Icons.credit_card_outlined,
+            onTap: () {},
           ),
           const SizedBox(
             height: 30,
@@ -58,23 +64,26 @@ class ProfileViewBody extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          const ProfileItem(
+          ProfileItem(
             title: 'Help Center',
             icon: Icons.help_center_outlined,
+            onTap: () {},
           ),
           const SizedBox(
             height: 20,
           ),
-          const ProfileItem(
+          ProfileItem(
             title: 'Request Account Deletion',
             icon: Icons.delete_outline_outlined,
+            onTap: () {},
           ),
           const SizedBox(
             height: 20,
           ),
-          const ProfileItem(
+          ProfileItem(
             title: 'Add another account',
             icon: Icons.person_add_alt_1_outlined,
+            onTap: () {},
           ),
         ],
       ),
