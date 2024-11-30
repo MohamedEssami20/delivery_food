@@ -4,7 +4,8 @@ import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 
 class SettingsSwitchItem extends StatelessWidget {
-  const SettingsSwitchItem({super.key, required this.value, required this.title});
+  const SettingsSwitchItem(
+      {super.key, required this.value, required this.title});
   final bool value;
   final String title;
   @override
@@ -13,6 +14,7 @@ class SettingsSwitchItem extends StatelessWidget {
       children: [
         Expanded(
           child: SwitchListTile(
+            contentPadding: EdgeInsets.zero,
             title: Text(
               title,
               style: AppTextStyles.medium14.copyWith(
