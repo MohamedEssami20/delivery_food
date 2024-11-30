@@ -2,6 +2,7 @@ import 'package:delivery_food/core/utils/app_text_styles.dart';
 import 'package:delivery_food/core/utils/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'change_language_widget.dart';
+import 'other_settings.dart';
 import 'settings_switch_item.dart';
 
 class AppSettingsViewBody extends StatelessWidget {
@@ -51,6 +52,18 @@ class AppSettingsViewBody extends StatelessWidget {
                 fontSize: 16,
               ),
             ),
+            const SizedBox(
+              height: 30,
+            ),
+            const OtherSettingItem(title: 'About Ticketis'),
+            const SizedBox(
+              height: 30,
+            ),
+            const OtherSettingItem(title: 'Privacy Policy'),
+            const SizedBox(
+              height: 30,
+            ),
+            const OtherSettingItem(title: 'Terms and Conditions'),
           ],
         ),
       ),
