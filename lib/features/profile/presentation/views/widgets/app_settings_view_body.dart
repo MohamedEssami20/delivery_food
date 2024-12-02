@@ -62,7 +62,7 @@ class AppSettingsViewBody extends StatelessWidget {
             const OtherSettingItem(title: 'Privacy Policy'),
             const SizedBox(
               height: 30,
-            ),
+            ),            
             const OtherSettingItem(title: 'Terms and Conditions'),
           ],
         ),
