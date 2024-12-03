@@ -1,4 +1,5 @@
 import 'package:delivery_food/core/utils/app_text_styles.dart';
+import 'package:delivery_food/features/profile/presentation/views/personal_data_view.dart';
 import 'package:flutter/material.dart';
 import '../app_settings.dart';
 import 'profile_information.dart';
@@ -31,7 +32,9 @@ class ProfileViewBody extends StatelessWidget {
           ProfileItem(
             title: 'Personal Data',
             icon: Icons.person_outline,
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, PersonalDataView.routeName);
+            },
           ),
           const SizedBox(
             height: 20,
