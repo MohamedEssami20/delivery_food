@@ -1,4 +1,5 @@
 import 'package:delivery_food/features/onBoarding/presentation/views/on_boarding_view.dart';
+import 'package:delivery_food/features/profile/presentation/views/help_center_view.dart';
 import 'package:flutter/material.dart';
 import 'package:delivery_food/features/splash/presentation/views/splash_view.dart';
 
@@ -67,6 +68,9 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
 
     case PersonalDataView.routeName:
       return MaterialPageRoute(builder: (context) => const PersonalDataView());
+
+    case HelpCenterView.routeName:
+      return MaterialPageRoute(builder: (context) => const HelpCenterView());
     // Add more routes here as needed
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
