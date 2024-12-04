@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../app_text_styles.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key, required this.actions, required this.title});
-  final Widget actions;
+  const CustomAppBar({super.key, this.actions, required this.title});
+  final Widget? actions;
   final String title;
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class CustomAppBar extends StatelessWidget {
               .copyWith(color: Colors.black, fontSize: 20),
         ),
         const Spacer(),
-        actions,
+        actions??const SizedBox(),
       ],
     );
   }
