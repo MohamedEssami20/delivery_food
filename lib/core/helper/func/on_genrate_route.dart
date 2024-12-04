@@ -2,7 +2,6 @@ import 'package:delivery_food/features/onBoarding/presentation/views/on_boarding
 import 'package:delivery_food/features/profile/presentation/views/help_center_view.dart';
 import 'package:flutter/material.dart';
 import 'package:delivery_food/features/splash/presentation/views/splash_view.dart';
-
 import '../../../features/auth/presentation/views/forget_password_view.dart';
 import '../../../features/auth/presentation/views/otp_view.dart';
 import '../../../features/auth/presentation/views/reset_password_view.dart';
@@ -15,6 +14,7 @@ import '../../../features/home/presentation/views/home_view.dart';
 import '../../../features/home/presentation/views/notification_view.dart';
 import '../../../features/payment/presentation/view/payment_view.dart';
 import '../../../features/profile/presentation/views/app_settings.dart';
+import '../../../features/profile/presentation/views/extra_card_view.dart';
 import '../../../features/profile/presentation/views/personal_data_view.dart';
 import '../../../features/profile/presentation/views/profile_view.dart';
 
@@ -71,6 +71,9 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
 
     case HelpCenterView.routeName:
       return MaterialPageRoute(builder: (context) => const HelpCenterView());
+
+    case ExtraCardView.routeName:
+      return MaterialPageRoute(builder: (context) => const ExtraCardView());
     // Add more routes here as needed
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());

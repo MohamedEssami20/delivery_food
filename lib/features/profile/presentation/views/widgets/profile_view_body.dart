@@ -1,4 +1,5 @@
 import 'package:delivery_food/core/utils/app_text_styles.dart';
+import 'package:delivery_food/features/profile/presentation/views/extra_card_view.dart';
 import 'package:delivery_food/features/profile/presentation/views/help_center_view.dart';
 import 'package:delivery_food/features/profile/presentation/views/personal_data_view.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,9 @@ class ProfileViewBody extends StatelessWidget {
           ProfileItem(
             title: 'Extra Card',
             icon: Icons.credit_card_outlined,
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, ExtraCardView.routeName);
+            },
           ),
           const SizedBox(
             height: 30,
