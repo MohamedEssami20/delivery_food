@@ -10,6 +10,10 @@ class Assets {
   /// assets/images/apple_Icon.svg
   static const String assetsImagesAppleIcon = "assets/images/apple_Icon.svg";
 
+  /// Assets for assetsImagesApplePay
+  /// assets/images/apple_pay.svg
+  static const String assetsImagesApplePay = "assets/images/apple_pay.svg";
+
   /// Assets for assetsImagesBurger
   /// assets/images/burger.png
   static const String assetsImagesBurger = "assets/images/burger.png";
@@ -69,6 +73,22 @@ class Assets {
   /// Assets for assetsImagesJuice
   /// assets/images/juice.png
   static const String assetsImagesJuice = "assets/images/juice.png";
+
+  /// Assets for assetsImagesMastercard
+  /// assets/images/mastercard.svg
+  static const String assetsImagesMastercard = "assets/images/mastercard.svg";
+
+  /// Assets for assetsImagesMastercardIcon
+  /// assets/images/mastercard_icon.svg
+  static const String assetsImagesMastercardIcon = "assets/images/mastercard_icon.svg";
+
+  /// Assets for assetsImagesPayIcon
+  /// assets/images/pay_icon.svg
+  static const String assetsImagesPayIcon = "assets/images/pay_icon.svg";
+
+  /// Assets for assetsImagesPaypal
+  /// assets/images/paypal.svg
+  static const String assetsImagesPaypal = "assets/images/paypal.svg";
 
   /// Assets for assetsImagesPizza
   /// assets/images/pizza.png

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:svg_flutter/svg_flutter.dart';
 
 import '../../../../../core/utils/app_assets.dart';
 import '../../../../../core/utils/app_text_styles.dart';
@@ -74,6 +75,16 @@ class CardItem extends StatelessWidget {
                       '••• / •••',
                       style: AppTextStyles.medium14
                           .copyWith(color: Colors.white, fontSize: 16),
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SvgPicture.asset(
+                      Assets.assetsImagesMastercardIcon,
+                      fit: BoxFit.fill,
+                      width: 100,
                     ),
                   ],
                 ),
