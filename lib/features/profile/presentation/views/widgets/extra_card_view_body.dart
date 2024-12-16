@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/widgets/custom_app_bar.dart';
+import '../../../../../core/utils/widgets/custom_button.dart';
 import '../../../data/models/credit_card_item_model.dart';
 import 'card_item.dart';
 import 'credit_card_item.dart';
@@ -76,8 +77,16 @@ class ExtraCardViewBody extends StatelessWidget {
                 );
               },
             ),
-            const Spacer(),
-            
+            const SizedBox(
+              height: 30,
+            ),
+            CustomButton(
+              title: "Add New Card",
+              onPressed: () {},
+            ),
+            const SizedBox(
+              height: 20,
+            ),
           ],
         ),
       ),
